@@ -31,7 +31,7 @@
     ARR[26]=1|0
     ARR[27]=0|0
 */
-card* CARDS_ADDR[MAX_SIZE]; 
+// hello
 //Function to initialize card and store their addresses in array of maximum size 28 which is whole number of cards
 void cardinit()
 {
