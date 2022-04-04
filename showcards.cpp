@@ -1,5 +1,8 @@
 #include "showcards.h"
 
+extern card* playercards[MAX_CARDS];// ADDRESSES Of player cards
+extern card* computercards[MAX_CARDS];// ADDRESSES Of computer cards
+extern card* deckcards[MAX_CARDSDECK];// ADDRESSES Of deck cards
 void printplayercards()
 {
 	cout << "PLAYER CARDS :" << endl;
@@ -30,13 +33,13 @@ void printdeckcards()
 	}
 }
 
+
 int main()
 {
-	void cardinit();
-	void randcards();
-	void printplayercards();
-	void printcomputercards();
-	void printdeckcards();
+
+cardinit();
+printallcards();
+ randcards();
+ printrandcards();
 	return 0;
 }
-

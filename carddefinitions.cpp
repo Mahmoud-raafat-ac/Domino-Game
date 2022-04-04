@@ -1,5 +1,6 @@
 
 #include "carddefinitions.h"
+#include "random.h"
 /*
 * Array to store addresses of all cards
   ARR[0]=6|6
@@ -58,5 +59,6 @@ void printallcards()
 		
 	}
 }
+
 
 

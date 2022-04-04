@@ -1,8 +1,6 @@
 #include "random.h"
 extern card* CARDS_ADDR[MAX_SIZE];// Addresses of all cards in this array
-card* playercards[MAX_CARDS];// ADDRESSES Of player cards
-card* computercards[MAX_CARDS];// ADDRESSES Of computer cards
-card* deckcards[MAX_CARDSDECK];// ADDRESSES Of deck cards
+
 /* 
 Function to assign card for player, computerand deck randomly
 using rand() funtion

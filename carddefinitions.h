@@ -15,13 +15,14 @@ using namespace std;
 #define MAX_SIZE 28 // Number of all cards
 #define TRUE 1
 #define FALSE 0
+
 // card definition which consists of 2 numbers
 struct card
 {
 	int num1, num2;
 
 };
-
+card* CARDS_ADDR[MAX_SIZE];
 
 /*
                   FUNCTIONS Prototypes
@@ -33,5 +34,5 @@ void cardinit();
 void printallcards();
 
 
-
+#include "carddefinitions.cpp"
 #endif
