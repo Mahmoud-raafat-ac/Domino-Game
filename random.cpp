@@ -109,10 +109,7 @@ void printrandcards()
 
 	}
 }
-int main()
-{
-	return 0;
-}
+
 
 
 
