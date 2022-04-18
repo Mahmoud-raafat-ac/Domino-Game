@@ -2,18 +2,19 @@
 #define playerandcomp
 
 #include "showcards.h"
-
+// player definition
 typedef struct player
 {
 int score;
 card *playercard[MAX_CARDS];
 }player;
+// computer definition
 typedef struct computer
 {
 int score;
 card *computercard[MAX_CARDS];
 }computer;
-
+// Function to intialize player
 player playerinit()
 { 
     player player1;
@@ -23,6 +24,7 @@ player playerinit()
     }
     return player1;
 }
+// Function to intialize computer
 computer computerinit()
 { 
     computer computer1;

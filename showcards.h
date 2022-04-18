@@ -14,7 +14,7 @@ int usedplayercards[MAX_CARDS] = { 0 };
 int usedcomputercards[MAX_CARDS] = { 0 };
 int useddeckcards[MAX_CARDSDECK] = { 0 };
 
-
+// Function to print all unused cards of player
 void printplayercards()
 {
 	cout << "PLAYER CARDS :" << endl;
@@ -24,6 +24,7 @@ void printplayercards()
 		cout << playercards[i]->num1 <<" | " << playercards[i]->num2 << endl;
 	}
 }
+// Function to print all unused cards of computer
 void printcomputercards()
 {
 	cout << "COMPUTER CARDS :" << endl;
@@ -34,7 +35,7 @@ void printcomputercards()
 	}
 
 }
-
+// Function to print all unused cards of deck
 void printdeckcards()
 {
 	cout << "DECK CARDS :" << endl;
