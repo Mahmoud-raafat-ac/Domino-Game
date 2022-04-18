@@ -6,13 +6,13 @@
 #define maxplayercompcards 21
 typedef struct player
 {
-int score;
+int scoretotal=0;
 card *playercard[maxplayercompcards];
 }player;
 // computer definition
 typedef struct computer
 {
-int score;
+int scoretotal=0;
 card *computercard[maxplayercompcards];
 }computer;
 // Function to intialize player

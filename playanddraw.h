@@ -4,6 +4,9 @@
 
 int playedcardsgame[maxplayercompcards]={0};
 int computercardsgame[maxplayercompcards]={0};
+int deckcardsgame[MAX_CARDSDECK]={0};
+int drawcomputer(struct computer computer1);
+int drawplayer(struct player player1);
 
 void firstplay(struct player player1,struct computer computer1)
 {
@@ -75,7 +78,7 @@ flaggotcard=0;
 }
 while(flaggotcard==0)
 {
-   indexdrawcard= draw();
+   indexdrawcard= drawplayer(player1);
    if(indexdrawcard!=-1)
  {
       if((left==player1.playercard[indexdrawcard]->num1)||(left==player1.playercard[indexdrawcard]->num2)||(right==player1.playercard[indexdrawcard]->num1)||(right==player1.playercard[indexdrawcard]->num2))
@@ -109,7 +112,7 @@ if(right==player1.playercard[indexplayer]->num2)
 {
 append(player1.playercard[indexplayer]->num1,player1.playercard[indexplayer]->num2,1);
 }
-
+playedcardsgame[indexplayer]=1;
 }
 
 void playcomputer(struct computer computer1)
@@ -129,7 +132,7 @@ flaggotcard=0;
 }
 while(flaggotcard==0)
 {
-   indexdrawcard= draw();
+   indexdrawcard= drawcomputer(computer1);
    if(indexdrawcard!=-1)
  {
       if((left==computer1.computercard[indexdrawcard]->num1)||(left==computer1.computercard[indexdrawcard]->num2)||(right==computer1.computercard[indexdrawcard]->num1)||(right==computer1.computercard[indexdrawcard]->num2))
@@ -143,7 +146,7 @@ while(flaggotcard==0)
  return;
  }
 }
-// hena hui lama yedos 3ala war2a a5od index beta3ha indexplayer=
+// hena Gui lama yedos 3ala war2a a5od index beta3ha indexplayer=
 if(left==computer1.computercard[indexcomputer]->num1)
 {
    append(computer1.computercard[indexcomputer]->num1,computer1.computercard[indexcomputer]->num2,1);
@@ -163,12 +166,34 @@ if(right==computer1.computercard[indexcomputer]->num2)
 {
 append(computer1.computercard[indexcomputer]->num1,computer1.computercard[indexcomputer]->num2,1);
 }
-
+computercardsgame[indexcomputer]=1;
 }
-int draw()
+int drawplayer(struct player player1)
 {
+for(int i=0;i<MAX_CARDSDECK;i++)
+{
+    if(deckcardsgame[i]==0)
+    {
+        player1.playercard[i+7]=deckcards[i];
+        deckcardsgame[i]=1;
+        return i+7;
+    }
+}
+return -1;
+}
 
-
+int drawcomputer(struct computer computer1)
+{
+for(int i=0;i<MAX_CARDSDECK;i++)
+{
+    if(deckcardsgame[i]==0)
+    {
+          computer1.computercard[i+7]=deckcards[i];
+        deckcardsgame[i]=1;
+        return i+7;
+    }
+}
+return -1;
 }
 
 #endif 

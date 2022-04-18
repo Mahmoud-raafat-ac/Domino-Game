@@ -1,4 +1,4 @@
-#include "playerandcomp.h"
+#include "score.h"
 
 
 int main()
