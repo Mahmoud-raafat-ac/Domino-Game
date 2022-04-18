@@ -1,4 +1,6 @@
 
+#ifndef random
+#define random
 /*
            included libraries
 */
@@ -124,3 +126,4 @@ void printrandcards()
 }
 
 
+#endif

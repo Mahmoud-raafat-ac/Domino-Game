@@ -1,4 +1,8 @@
 
+#ifndef carddefinitions
+#define carddefinitions
+#include <iostream>
+using namespace std;
 /*
                       DEFINITIONS
 */
@@ -55,7 +59,7 @@ void cardinit()
 		for (int j = i; j > 0; j--)
 		{ 
 		
-			CARDS_ADDR[counter]= new card();
+			CARDS_ADDR[counter] = new card();
 			CARDS_ADDR[counter]->num1 = i-1;
 			CARDS_ADDR[counter]->num2 = j-1;
 			counter++;
@@ -74,3 +78,4 @@ void printallcards()
 }
 
 
+#endif

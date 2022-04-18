@@ -1,4 +1,6 @@
 
+#ifndef showcards
+#define showcards
 /*
            included libraries
 */
@@ -11,12 +13,8 @@
 int usedplayercards[MAX_CARDS] = { 0 };
 int usedcomputercards[MAX_CARDS] = { 0 };
 int useddeckcards[MAX_CARDSDECK] = { 0 };
-/*
-                  FUNCTIONS Prototypes
-*/
-//extern card* playercards[MAX_CARDS];// ADDRESSES Of player cards
-//extern card* computercards[MAX_CARDS];// ADDRESSES Of computer cards
-//extern card* deckcards[MAX_CARDSDECK];// ADDRESSES Of deck cards
+
+
 void printplayercards()
 {
 	cout << "PLAYER CARDS :" << endl;
@@ -48,4 +46,5 @@ void printdeckcards()
 }
 
 
+#endif
 

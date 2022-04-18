@@ -1,6 +1,5 @@
-#include <iostream>
-using namespace std;
-#include "showcards.h"
+#include "playerandcomp.h"
+
 
 int main()
 {
