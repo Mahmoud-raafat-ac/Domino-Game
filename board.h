@@ -18,14 +18,22 @@ struct Node
 to the head of a list
 and an int, inserts a new node on the
 front of the list. */
-void push( int new_data1,int new_data2)
+void push( int new_data1,int new_data2,int data)
 {
     /* 1. allocate node */
     Node* new_node = new Node();
  
     /* 2. put in the data */
-    new_node->data1 = new_data1;
-  new_node->data2 = new_data2;
+    if(data==1)
+    {
+     new_node->data1 = new_data1;
+     new_node->data2 = new_data2;
+    }
+    else 
+    {
+     new_node->data1 = new_data2;
+     new_node->data2 = new_data1;
+    }
     /* 3. Make next of new node as head
     and previous as NULL */
     new_node->next = head;
@@ -41,7 +49,7 @@ void push( int new_data1,int new_data2)
  
 /* Given a reference (pointer to pointer) to the head
 of a DLL and an int, appends a new node at the end */
-void append( int new_data1,int new_data2)
+void append( int new_data1,int new_data2,int data)
 {
     /* 1. allocate node */
     Node* new_node = new Node();
@@ -49,8 +57,16 @@ void append( int new_data1,int new_data2)
     Node* last = head; /* used in step 5*/
  
     /* 2. put in the data */
+    if(data==0)
+    {
     new_node->data1 = new_data1;
     new_node->data2 = new_data2;
+    }
+    else
+     {
+         new_node->data1 = new_data2;
+    new_node->data2 = new_data1;
+    }
     /* 3. This new node is going to be the last node, so
         make next of it as NULL*/
     new_node->next = NULL;
