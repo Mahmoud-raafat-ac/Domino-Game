@@ -105,8 +105,8 @@ void printList()
         head = head->next;
     }
 }
-void deleteAllNodes() {
-  
+void deleteAllNodes() \
+{
   //1. create a temp node
   Node* temp = new Node();
   
@@ -118,4 +118,7 @@ void deleteAllNodes() {
     head = head->next;
     free(temp);
   }
-#endif board
+}
+
+
+#endif 

@@ -3,16 +3,17 @@
 
 #include "showcards.h"
 // player definition
+#define maxplayercompcards 21
 typedef struct player
 {
 int score;
-card *playercard[MAX_CARDS];
+card *playercard[maxplayercompcards];
 }player;
 // computer definition
 typedef struct computer
 {
 int score;
-card *computercard[MAX_CARDS];
+card *computercard[maxplayercompcards];
 }computer;
 // Function to intialize player
 player playerinit()
