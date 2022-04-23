@@ -87,8 +87,9 @@ void CDomino::swap()
 // Prints domino to console
 void CDomino::print()
 {
-	std::cout << "[" << this->left << "|" << this->right << "]";
+	std::cout << "\033[1;32m [" << this->left << "|" << this->right << "]\033[0m";
 }
+// sum data in card
 int CDomino::sum()
 {
 	return this->left+this->right;

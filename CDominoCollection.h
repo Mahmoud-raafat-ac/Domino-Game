@@ -56,6 +56,7 @@ public:
 	void printAsNumberedList();
 	void printAsChainedList();
 	int sumall();
+	int greatestcardinhand();
 };
 
 /* =========================================

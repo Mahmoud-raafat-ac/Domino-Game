@@ -373,7 +373,7 @@ void CDominoCollection::printAsNumberedList()
 {
 	if (size == 0) // Collection is empty
 	{
-		cout << "    [Empty]" << endl;
+	cout << " \033[1;32m [Empty] \033[0m" << endl;
 	}
 	else
 	{
@@ -396,22 +396,37 @@ void CDominoCollection::printAsNumberedList()
 		}
 	}
 }
+// returns the sum of all cards in players hand
 int CDominoCollection::sumall()
 {
 	DominoListNode* curNode = rootNodePtr;
  int sum=0;
-		int index = 0;
-
 		// Loop through each node in linked list,
-		// and write it to the console in a list
+		// and sum it to the console in a list
 		// form.
 	while (curNode)
 		{
-			index++;
 			 sum+=curNode->data.sum();
 			curNode = curNode->nextPtr;
 		}
 		return sum;
+}
+// find greates card in a player hand
+int CDominoCollection::greatestcardinhand()
+{
+	DominoListNode* curNode = rootNodePtr;
+ int max=0,temp=0;
+		
+
+		// Loop through each node in linked list,
+	    // find maximum node
+	while (curNode)
+		{  temp=curNode->data.sum();
+			if(max<temp)
+			 max=temp;
+			curNode = curNode->nextPtr;
+		}
+		return max;
 }
 // Prints the current domino collection as a
 // table/game board, intended to display all
@@ -424,7 +439,7 @@ void CDominoCollection::printAsChainedList()
 {
 	if (size == 0) // Collection is empty
 	{
-		cout << "    [Empty]" << endl;
+		cout << " \033[1;32m [Empty] \033[0m" << endl;
 	}
 	else
 	{
