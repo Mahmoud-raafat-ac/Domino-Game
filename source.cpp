@@ -9,10 +9,11 @@ bool getPlayAgain();
 int numofplayerstotal=0;
 int main()
 {
+	system("color");
     CDominoesGame domGame;
 	bool playAgain = true; 
-    cout << "Welcome to Domino-Game!" << endl;
-	cout << "This program was created by best team ever." << endl << endl; 
+    cout << "\033[1;34m Welcome to Domino-Game!  \033[0m" << endl;
+	cout << "\033[1;34m This program was created by best team ever. \033[0m" << endl << endl; 
     system("pause");
 
     // Main game loop
@@ -48,7 +49,7 @@ GameOptions getGameOptions()
 	{
 		system("CLS");
 
-		cout << "Please enter the number of players (2-4): ";
+		cout << "\033[1;34m Please enter the number of players (2-4): \033[0m\n";
 
 		string ans;
 		cin >> ans;
@@ -59,7 +60,7 @@ GameOptions getGameOptions()
 
 			if (num < 2 || num > 4)
 			{
-				cout << "Error: Enter a number between 2 and 4." << endl << endl;
+				cout << "\033[1;31m Error: Enter a number between 2 and 4. \033[0m" << endl << endl;
 			}
 			else
 			{
@@ -70,7 +71,7 @@ GameOptions getGameOptions()
 		}
 		catch (exception ex)
 		{
-			cout << "Error: Invalid input format." << endl << endl;
+			cout << "\033[1;31m Error: Invalid input format. \033[0m" << endl << endl;
 		}
 
 		system("pause");
@@ -84,7 +85,7 @@ GameOptions getGameOptions()
 
 		string name = "";
 
-		cout << "Please enter the name of Player " << (i + 1) << ": " << flush;
+		cout << "\033[1;34m Please enter the name of Player \033[0m" << (i + 1) << ": " << flush;
 
 		while (name.length() == 0)
 		{
@@ -97,7 +98,7 @@ GameOptions getGameOptions()
 		while (true)
 		{
 			system("CLS");
-			cout << "Is " << name << " a human player (y or n)? ";
+			cout << "\033[1;34m Is \033[0m" << name << "\033[1;34m a human player (y or n)? \033[0m";
 			
 			string ans = "";
 			cin >> ans;
@@ -114,7 +115,7 @@ GameOptions getGameOptions()
 			}
 			else
 			{
-				cout << "Error: Invalid input." << endl << endl;
+				cout << "\033[1;31m Error: Invalid input. \033[0m" << endl << endl;
 				system("pause");
 			}
 		}
@@ -138,7 +139,7 @@ bool getPlayAgain()
 	while (true)
 	{
 		string ans;
-		cout<<endl<<"Would you like to play again (Y OR N)?"<<endl;
+		cout<<endl<<"\033[1;34m Would you like to play again (Y OR N)? \033[0m"<<endl;
 		cin>>ans;
 
 		if(ans.length() > 0){
@@ -147,7 +148,7 @@ bool getPlayAgain()
 			else if(ans=="n" || ans=="N")
 				return false;
 		}
-		cout << endl << "Invalid Input." << endl;
+		cout << endl << "\033[1;31m Invalid Input. \033[0m" << endl;
 		}
 	
 }

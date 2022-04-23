@@ -175,7 +175,7 @@ void CDominoesGame::playerTurnSuccess()
 {
 	system("CLS");
 
-	cout << getCurrentPlayer() << " has finished his/her turn!" << endl << endl;
+	cout << getCurrentPlayer() << "\033[1;35m has finished his/her turn! \033[0m" << endl << endl;
 	sequentialPasses = 0;
 
 	system("pause");
@@ -186,7 +186,7 @@ void CDominoesGame::playerTurnPassed()
 {
 	system("CLS");
 
-	cout << getCurrentPlayer() << " has passed his/her turn!" << endl << endl;
+	cout << getCurrentPlayer() << "\033[1;35m has passed his/her turn! \033[0m" << endl << endl;
 	sequentialPasses += 1;
 
 	system("pause");
@@ -198,7 +198,7 @@ void CDominoesGame::newGame(const GameOptions &opt)
 	// Data sanity check for player count
 	if (opt.numPlayers < 2 || opt.numPlayers > 4)
 	{
-		cout << "Error creating new game: Invalid player count: " << opt.numPlayers;
+		cout << "\033[1;31m  Error creating new game: Invalid player count: \033[0m" << opt.numPlayers;
 		this->isGameActive = false;
 		return;
 	}
@@ -265,14 +265,14 @@ void CDominoesGame::showWinMessage()
 
 	system("pause");
 
-	cout << endl << " === Pieces on the Table ===" << endl << endl;
+	cout << endl << "\033[1;36m === Pieces on the Table === \033[0m" << endl << endl;
 	table.printAsNumberedList();
 
 	cout << endl;
 
 	system("pause");
 
-	cout << endl << " === Pieces in Boneyard pile ===" << endl << endl;
+	cout << endl << "\033[1;36m === Pieces in Boneyard pile ===  \033[0m" <<endl<<endl;
 	pile.printAsNumberedList();
 
 	cout << endl;
@@ -281,30 +281,30 @@ void CDominoesGame::showWinMessage()
 
 	for (int i = 0; i < numPlayers; i++)
 	{
-		cout << endl << "=== Stats for " << playerArr[i].getName() << " ===" << endl << endl;
-		cout << "Dominoes Played: " << playerArr[i].getPiecesPlayed() << endl;
-		cout << "Dominoes Drawn:  " << playerArr[i].getPiecesDrawn() << endl;
-		cout << "Dominoes Left:   " << playerArr[i].getPiecesInHand() << endl << endl;
+		cout<<endl<<"\033[1;36m === Stats for \033[0m"<<playerArr[i].getName()<<"\033[1;36m === \033[0m"<<endl<<endl;
+		cout << "\033[1;36m Dominoes Played: \033[0m" << playerArr[i].getPiecesPlayed() << endl;
+		cout << "\033[1;36m Dominoes Drawn:  \033[0m" << playerArr[i].getPiecesDrawn() << endl;
+		cout << "\033[1;36m Dominoes Left:   \033[0m" << playerArr[i].getPiecesInHand() << endl << endl;
 
 		playerArr[i].printHand();
-      cout<<"sum of cards in hand"<<playerArr[i].sumhand();
+      cout<<"\033[1;36m sum of cards in hand \033[0m"<<playerArr[i].sumhand();
 		cout << endl;
 		system("pause");
 	}
 if (winner == -1)
 	{
 		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-		cout << "Nobody can make a move! The game has ended";
+		cout << "\033[1;36m Nobody can make a move! The game has ended \033[0m";
 		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
 		
-		cout << "Congratulations! " << getWinner() << " has won the game!";
+		cout << "\033[1;36m Congratulations! \033[0m" << getWinner() << "\033[1;36m has won the game! \033[0m";
 		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
 	}
 	else
 	{
 		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 		
-		cout << "Congratulations! " << getWinner() << " has won the game!";
+		cout << "\033[1;36m Congratulations! \033[0m" << getWinner() << "\033[1;36m has won the game! \033[0m";
 		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
 	}
 	}

@@ -152,7 +152,7 @@ bool CPlayer::processAITurn(CDominoCollection &table, CDominoCollection &pile)
 		{
 			// Failed to draw piece because pile was empty
 
-			cout << endl << name << " attempted to draw a piece, but the Boneyard was empty :(";
+			cout << endl << name << "\033[1;31m attempted to draw a piece, but the Boneyard was empty :( \033[0m";
 			cout << endl << endl;
 
 			system("pause");
@@ -199,13 +199,13 @@ bool CPlayer::showPlayerMenu(CDominoCollection &table, CDominoCollection &pile)
 		table.printAsChainedList();
 
 		// Print player menu options
-		cout << endl << "=== Player Menu ===" << endl << endl;
+		cout << endl << "\033[1;34m  === Player Menu ===" << endl << endl;
 		cout << "    1. Play Piece." << endl;
 		cout << "    2. View Number of Pieces in Boneyard." << endl;
 		cout << "    3. Draw Piece." << endl;
 		cout << "    4. Pass Turn." << endl;
 		cout<<  "    5.End game."<<endl<<endl;
-		cout << "Selection: ";
+		cout << "Selection: \033[0m\n";
 
 		string selectionStr;
 		cin >> selectionStr;
@@ -240,7 +240,7 @@ bool CPlayer::showPlayerMenu(CDominoCollection &table, CDominoCollection &pile)
 				{
 					// Check if the player has no pieces they can play. If they do have a domino
 					// that they can play, notify them rather than drawing another.
-					cout << "Don't draw a piece! You have one that you can play!" << endl;
+					cout << "\033[1;31m  Don't draw a piece! You have one that you can play! \033[0m" << endl;
 					break;
 				}
 				else
@@ -249,14 +249,14 @@ bool CPlayer::showPlayerMenu(CDominoCollection &table, CDominoCollection &pile)
 					if (drawPiece(pile, drawn))
 					{
 						// Draw a piece from the boneyard pile
-						cout << name << " drew a domino from the Boneyard ";
+						cout << name << "\033[1;35m drew a domino from the Boneyard \033[0m";
 						
 						cout << endl;
 					}
 					else
 					{
 						// Boneyard pile was empty
-						cout << "You cannot draw any pieces because the Boneyard is empty. Pass your turn." << endl;
+						cout << "\033[1;35m You cannot draw any pieces because the Boneyard is empty. Pass your turn.\033[0m" << endl;
 					}
 				}
 				break;
@@ -265,14 +265,14 @@ bool CPlayer::showPlayerMenu(CDominoCollection &table, CDominoCollection &pile)
 				{
 					// Check if the player has no pieces they can play. If they do have a domino
 					// that they can play, notify them rather than passing their turn.
-					cout << "You cannot pass your turn, you have a piece that you can play!" << endl;
+					cout << "\033[1;35m You cannot pass your turn, you have a piece that you can play! \033[0m" << endl;
 					break;
 				}
 				else if (pile.getSize() > 0)
 				{
 					// Make sure Boneyard pile is empty. If it is not empty, notify player that
 					// they should draw a domino instead.
-					cout << "Don't just pass your turn, draw a piece from the Boneyard!" << endl;
+					cout << "\033[1;35m Don't just pass your turn, draw a piece from the Boneyard! \033[0m" << endl;
 					break;
 				}
 				else
@@ -300,13 +300,13 @@ bool CPlayer::showPlayerMenu(CDominoCollection &table, CDominoCollection &pile)
 				}
 			default:
 				// Player selection was out of range
-				cout << "Invalid selection.";
+				cout << "\033[1;31m  Invalid selection. \033[0m";
 			}
 		}
 		catch (exception ex)
 		{
 			// Player input was not an integer
-			cout << "Invalid input format.";
+			cout << "\033[1;31m  Invalid input format. \033[0m";
 		}
 
 		cout << endl;
@@ -320,7 +320,7 @@ bool CPlayer::showPlayerMenu(CDominoCollection &table, CDominoCollection &pile)
 // and this method returns false.
 bool CPlayer::showPlayPieceMenu(CDominoCollection &table)
 {
-	cout << "Enter Domino ID to play, or '0' to Cancel: ";
+	cout << "\033[1;34m Enter Domino ID to play, or '0' to Cancel: \033[0m\n";
 
 	string pieceID;
 	cin >> pieceID;
@@ -347,7 +347,7 @@ bool CPlayer::showPlayPieceMenu(CDominoCollection &table)
 		else
 		{
 			// Selection is out of bounds
-			cout << "'" << pieceID << "' is not a valid piece ID for your hand." << endl << endl;
+			cout << "'" << pieceID << "'\033[1;31m  is not a valid piece ID for your hand. \033[0m" << endl << endl;
 			system("pause");
 			return false;
 		}
@@ -355,7 +355,7 @@ bool CPlayer::showPlayPieceMenu(CDominoCollection &table)
 	catch (exception ex)
 	{
 		// User input was not an integer
-		cout << "Invalid input format." << endl << endl;
+		cout << "\033[1;31m Invalid input format.\033[0m" << endl << endl;
 		system("pause");
 		return false;
 	}
@@ -373,7 +373,7 @@ bool CPlayer::playPiece(CDominoCollection &table, CDomino &domino, bool askSide)
 		table.addToStart(domino);
 		hand.remove(domino);
 
-		cout << endl << name << " placed the first piece: ";
+		cout << endl << name << "\033[1;35m placed the first piece: \033[0m";
 		domino.print();
 
 		cout << endl << endl;
@@ -416,10 +416,10 @@ bool CPlayer::playPiece(CDominoCollection &table, CDomino &domino, bool askSide)
 		// end, display error message and return false
 		if (!canPlayLeft && !canPlayRight)
 		{
-			cout << "Error: Cannot play piece ";
+			cout << "\033[1;31m Error: Cannot play piece \033[0m\n";
 			
 
-			cout << ". No matching piece on table." << endl << endl;
+			cout << "\033[1;31m . No matching piece on table. \033[0m" << endl << endl;
 
 			system("pause");
 			return false;
@@ -435,7 +435,7 @@ bool CPlayer::playPiece(CDominoCollection &table, CDomino &domino, bool askSide)
 				// Ask player what side they prefer
 				while (true)
 				{
-					cout << "What side do you want to play this piece on (left or right)? ";
+					cout << "\033[1;34m What side do you want to play this piece on (left or right)? \033[0m";
 
 					string ans;
 					cin >> ans;
@@ -452,7 +452,7 @@ bool CPlayer::playPiece(CDominoCollection &table, CDomino &domino, bool askSide)
 					}
 					else
 					{
-						cout << "Error: Invalid input." << endl;
+						cout << "\033[1;31m Error: Invalid input. \033[0m" << endl;
 						system("pause");
 					}
 				}
@@ -473,7 +473,7 @@ bool CPlayer::playPiece(CDominoCollection &table, CDomino &domino, bool askSide)
 			}
 		}
 
-		cout << endl << name << " played ";
+		cout << endl << name << "\033[1;35m played \033[0m";
 		domino.print();
 
 		// Play domino piece on selected side
@@ -486,7 +486,7 @@ bool CPlayer::playPiece(CDominoCollection &table, CDomino &domino, bool askSide)
 			table.addToStart(domino); // Add domino to left side of chain
 			hand.remove(domino);      // Remove domino from hand
 
-			cout << " on the left side of the chain." << endl << endl;
+			cout << "\033[1;35m on the left side of the chain. \033[0m" << endl << endl;
 		}
 		else if (canPlayRight)
 		{
@@ -497,7 +497,7 @@ bool CPlayer::playPiece(CDominoCollection &table, CDomino &domino, bool askSide)
 			table.addToEnd(domino); // Add domino to right side of chain
 			hand.remove(domino);    // Remove domino from hand
 
-			cout << " on the right side of the chain." << endl << endl;
+			cout << "\033[1;35m on the right side of the chain. \033[0m" << endl << endl;
 		}
 
 		stat_PiecesPlayed++;
@@ -589,13 +589,13 @@ bool CPlayer::drawPiece(CDominoCollection &pile, CDomino &drawnDomino)
 // a numbered list
 void CPlayer::printHand()
 {
-	cout << name << "'s hand:" << endl;
+	cout << name << "\033[1;35m 's hand: \033[0m" << endl;
 	hand.printAsNumberedList();
 }
 
 int CPlayer::sumhand()
 {
-	cout << name << "'s hand:" << endl;
+	cout << name << "\033[1;35m 's hand: \033[0m" << endl;
 	return hand.sumall();
 }
 

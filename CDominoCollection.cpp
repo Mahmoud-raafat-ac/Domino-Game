@@ -373,7 +373,7 @@ void CDominoCollection::printAsNumberedList()
 {
 	if (size == 0) // Collection is empty
 	{
-		cout << "    [Empty]" << endl;
+		cout << " \033[1;32m [Empty] \033[0m" << endl;
 	}
 	else
 	{
@@ -424,7 +424,7 @@ void CDominoCollection::printAsChainedList()
 {
 	if (size == 0) // Collection is empty
 	{
-		cout << "    [Empty]" << endl;
+		cout << "\033[1;32m [Empty] \033[0m" << endl;
 	}
 	else
 	{
