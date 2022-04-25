@@ -18,8 +18,10 @@ int main()
     CDominoesGame domGame;
 	int playAgain = 1; 
 	int endgame=0;
-    cout << "\033[1;34m Welcome to Domino-Game!  \033[0m" << endl;
-	cout << "\033[1;34m Our goal is for you to have fun. \033[0m" << endl << endl; 
+   	cout << "\033[1;34m-----------------------------\033[0m" << endl;
+	cout << "\033[1;34m|  D O M I N O E - G A M E  |\033[0m" << endl;
+	cout << "\033[1;34m-----------------------------\033[0m" << endl << endl;
+	cout << "\033[1;34mOur goal is for you to have fun. \033[0m" << endl << endl; 
     system("pause");
 
     // Main game loop
