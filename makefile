@@ -15,6 +15,9 @@ CDominoesGame.o: CDominoesGame.cpp CDominoesGame.h
 
 CPlayer.o: CPlayer.cpp CPlayer.h
 	g++ -c CPlayer.cpp -o CPlayer.o
+	
+run:
+	./game	
 
 clean:
 	rm *.o 
