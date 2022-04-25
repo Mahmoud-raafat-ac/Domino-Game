@@ -373,7 +373,7 @@ bool CPlayer::playPiece(CDominoCollection &table, CDomino &domino, bool askSide)
 		// Table is empty, so play the piece
 		table.addToStart(domino);
 		hand.remove(domino);
-        system("cls");
+        
 		cout << endl << name << "\033[1;35m placed the first piece: \033[0m";
 		domino.print();
 
@@ -473,7 +473,7 @@ bool CPlayer::playPiece(CDominoCollection &table, CDomino &domino, bool askSide)
 				}
 			}
 		}
-        system("cls");
+       
 		cout << endl << name << "\033[1;35m played \033[0m";
 		domino.print();
 
