@@ -1,3 +1,9 @@
+/* members team :
+(1) Name :  Mahmoud raafat mohamed shaaban               ,    Sec : 4                , B.N : 1
+(2) Name :  Ahmed mohamed mohamed ibrahiem               ,    Sec : 1                , B.N : 22 
+(3) Name :  Mohamed hisham hammad abdel rahman           ,    Sec : 3                , B.N : 53
+(4) Name : Mohamed yahya abdel fattah                    ,    Sec : 3                , B,N : 54 */
+
 /* =============================================
 * File: CPlayer.cpp
 * Description: Implementation file for the CPlayer class.
@@ -120,11 +126,11 @@ bool CPlayer::processAITurn(CDominoCollection &table, CDominoCollection &pile)
 	system("CLS");
 
 	cout << "--------------------------------------------" << endl;
-	cout << "It is now " << name << "'s turn." << std::endl;
+	cout << "\033[1;35m It is now \033[0m" << name << "\033[1;35m 's turn. \033[0m" << std::endl;
 	cout << "--------------------------------------------" << endl << endl;
 
 	// Print dominoes on table/game board
-	cout << "~ Dominoes on the table ~" << endl;
+	cout << "\033[1;35m ~ Dominoes on the table ~ \033[0m" << endl;
 	table.printAsChainedList();
 
 	// Does the AI player have a playable piece?
@@ -139,7 +145,7 @@ bool CPlayer::processAITurn(CDominoCollection &table, CDominoCollection &pile)
 		// Attempt to draw a piece from the Boneyard pile
 		if (drawPiece(pile, drawn))
 		{
-			cout << endl << name << " drew a domino from the Boneyard ";
+			cout << endl << name << "\033[1;35m drew a domino from the Boneyard \033[0m";
 			
 			cout << endl << endl;
 
@@ -191,15 +197,15 @@ bool CPlayer::showPlayerMenu(CDominoCollection &table, CDominoCollection &pile)
 		system("CLS");
 
 		cout << "--------------------------------------------" << endl;
-		cout << "It is now " << name << "'s turn." << std::endl;
+		cout << "\033[1;34m It is now  \033[0m" << name << "\033[1;34m 's turn. \033[0m" << std::endl;
 		cout << "--------------------------------------------" << endl << endl;
 
 		// Print dominoes on table/game board
-		cout << "~ Dominoes on the table ~" << endl;
+		cout << "\033[1;34m ~ Dominoes on the table ~  \033[0m" << endl;
 		table.printAsChainedList();
 
 		// Print player menu options
-		cout << endl << "\033[1;34m  === Player Menu ===" << endl << endl;
+	cout << endl << "\033[1;34m  === Player Menu ===" << endl << endl;
 		cout << "    1. Play Piece." << endl;
 		cout << "    2. View Number of Pieces in Boneyard." << endl;
 		cout << "    3. Draw Piece." << endl;
@@ -233,14 +239,14 @@ bool CPlayer::showPlayerMenu(CDominoCollection &table, CDominoCollection &pile)
 				// Player canceled selection, or selection was invalid.
 				continue;
 			case 2:
-				cout << "There are " << pile.getSize() << " pieces left in the Boneyard." << endl;
+				cout << "\033[1;35mThere are \033[0m" << pile.getSize() << "\033[1;35m pieces left in the Boneyard. \033[0m" << endl;
 				break;
 			case 3:
 				if (canPlayPiece(table))
 				{
 					// Check if the player has no pieces they can play. If they do have a domino
 					// that they can play, notify them rather than drawing another.
-					cout << "\033[1;31m  Don't draw a piece! You have one that you can play! \033[0m" << endl;
+				cout << "\033[1;31m  Don't draw a piece! You have one that you can play! \033[0m" << endl;
 					break;
 				}
 				else
@@ -283,7 +289,7 @@ bool CPlayer::showPlayerMenu(CDominoCollection &table, CDominoCollection &pile)
 				{
 					// take value of wanted exit desicion
 					char exitval; 
-					cout<<"do you want to exit game(Y or N)?"<<endl;
+					cout<<"\033[1;34m do you want to exit game(Y or N)? \033[0m"<<endl;
 					cin>>exitval;
 					if(exitval=='y' || exitval=='Y')
 					{
@@ -294,11 +300,12 @@ bool CPlayer::showPlayerMenu(CDominoCollection &table, CDominoCollection &pile)
 					{
 						
 						system("CLS");
-						cout<<"Continue game"<<endl;
+						cout<<"\033[1;34m Continue game \033[0m"<<endl;
+					
 						break;
 					}
 				}
-			default:
+		default:
 				// Player selection was out of range
 				cout << "\033[1;31m  Invalid selection. \033[0m";
 			}
@@ -372,7 +379,7 @@ bool CPlayer::playPiece(CDominoCollection &table, CDomino &domino, bool askSide)
 		// Table is empty, so play the piece
 		table.addToStart(domino);
 		hand.remove(domino);
-
+        
 		cout << endl << name << "\033[1;35m placed the first piece: \033[0m";
 		domino.print();
 
@@ -472,7 +479,7 @@ bool CPlayer::playPiece(CDominoCollection &table, CDomino &domino, bool askSide)
 				}
 			}
 		}
-
+       
 		cout << endl << name << "\033[1;35m played \033[0m";
 		domino.print();
 
@@ -486,7 +493,8 @@ bool CPlayer::playPiece(CDominoCollection &table, CDomino &domino, bool askSide)
 			table.addToStart(domino); // Add domino to left side of chain
 			hand.remove(domino);      // Remove domino from hand
 
-			cout << "\033[1;35m on the left side of the chain. \033[0m" << endl << endl;
+		cout << "\033[1;35m on the left side of the chain. \033[0m" << endl << endl;
+		
 		}
 		else if (canPlayRight)
 		{
@@ -592,13 +600,17 @@ void CPlayer::printHand()
 	cout << name << "\033[1;35m 's hand: \033[0m" << endl;
 	hand.printAsNumberedList();
 }
-
+// sum all cards in player's hand
 int CPlayer::sumhand()
 {
-	cout << name << "\033[1;35m 's hand: \033[0m" << endl;
+	
 	return hand.sumall();
 }
-
+// find maximum card in player's hand
+int CPlayer:: maxcard()
+{
+	return hand.greatestcardinhand();
+}
 /* =========================================
 *  End of File
 *  =========================================

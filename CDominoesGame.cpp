@@ -1,3 +1,9 @@
+/* members team :
+(1) Name :  Mahmoud raafat mohamed shaaban               ,    Sec : 4                , B.N : 1
+(2) Name :  Ahmed mohamed mohamed ibrahiem               ,    Sec : 1                , B.N : 22 
+(3) Name :  Mohamed hisham hammad abdel rahman           ,    Sec : 3                , B.N : 53
+(4) Name : Mohamed yahya abdel fattah                    ,    Sec : 3                , B,N : 54 */
+
 /* =============================================
 * File: CDominoesGame.cpp
 * Description: Implementation file for GameOptions
@@ -14,7 +20,7 @@
 #include <iostream>
 #include <string>
 #include "CDominoesGame.h"
-int score[4]={0};
+
 using namespace std;
 
 // Default constructor for GameOptions struct
@@ -57,7 +63,7 @@ void CDominoesGame::clearState()
 
 	table.clear();
 	pile.clear();
-
+    
 	isGameActive = false;
 	curPlayerTurn = 0;
 	sequentialPasses = 0;
@@ -115,7 +121,8 @@ bool CDominoesGame::checkGameOver()
 	return false;
 }
 
-// Returns the name of winning player, or "Tie." if there was a tie.
+// Returns the name of winning player.
+// By comparing between total sum of cards in each player's hand
 string CDominoesGame::getWinner()
 {   
 	if(winner==-1)
@@ -123,32 +130,83 @@ string CDominoesGame::getWinner()
 		if(numofplayerstotal==2)
 		{
 			if(playerArr[0].sumhand()<playerArr[1].sumhand())
-			return playerArr[0].getName();
-			else 
+			{
+				score[0]+=playerArr[1].sumhand();
+				return playerArr[0].getName();
+			}
+			else {
+				score[1]+=playerArr[0].sumhand();
 		return playerArr[1].getName();
+			}
 		}
 		else if(numofplayerstotal==3)
 		{
 			if((playerArr[0].sumhand()<playerArr[1].sumhand())&&(playerArr[0].sumhand()<playerArr[2].sumhand()))
+			{
+				score[0]+=playerArr[1].sumhand()+playerArr[2].sumhand();
               return playerArr[0].getName();
+			}
 			  else if((playerArr[1].sumhand()<playerArr[0].sumhand())&&(playerArr[1].sumhand()<playerArr[2].sumhand()))
+			  {
+				  score[1]+=playerArr[0].sumhand()+playerArr[2].sumhand();
 			  return playerArr[1].getName();
-			  else return playerArr[2].getName();
+			  }
+			  else{
+				  score[2]+=playerArr[1].sumhand()+playerArr[0].sumhand();
+			   return playerArr[2].getName();
+			  }
 		}
 		else if(numofplayerstotal==4)
 		{
 			if((playerArr[0].sumhand()<playerArr[1].sumhand())&&(playerArr[0].sumhand()<playerArr[2].sumhand())&&(playerArr[0].sumhand()<playerArr[3].sumhand()))
+		{
+			score[0]+=playerArr[1].sumhand()+playerArr[2].sumhand()+playerArr[3].sumhand();
 		return playerArr[0].getName();
-		else if((playerArr[1].sumhand()<playerArr[0].sumhand())&&(playerArr[1].sumhand()<playerArr[2].sumhand())&&(playerArr[1].sumhand()<playerArr[3].sumhand()))
-		return playerArr[1].getName();
-		else if((playerArr[2].sumhand()<playerArr[0].sumhand())&&(playerArr[2].sumhand()<playerArr[1].sumhand())&&(playerArr[2].sumhand()<playerArr[3].sumhand()))
-		return playerArr[2].getName();
-		else return playerArr[3].getName();
 		}
-		
+		else if((playerArr[1].sumhand()<playerArr[0].sumhand())&&(playerArr[1].sumhand()<playerArr[2].sumhand())&&(playerArr[1].sumhand()<playerArr[3].sumhand()))
+		{
+			score[1]+=playerArr[0].sumhand()+playerArr[2].sumhand()+playerArr[3].sumhand();
+		return playerArr[1].getName();
+		}
+		else if((playerArr[2].sumhand()<playerArr[0].sumhand())&&(playerArr[2].sumhand()<playerArr[1].sumhand())&&(playerArr[2].sumhand()<playerArr[3].sumhand()))
+		{
+			score[2]+=playerArr[1].sumhand()+playerArr[0].sumhand()+playerArr[3].sumhand();
+		return playerArr[2].getName();
+		}
+		else
+		{
+			score[3]+=playerArr[1].sumhand()+playerArr[2].sumhand()+playerArr[0].sumhand();
+		 return playerArr[3].getName();
+		}
+		}	
 	}
-	
-	
+	if(numofplayerstotal==2)
+	{
+		if(winner==0)
+	score[winner]+=playerArr[1].sumhand();
+	else
+	 score[winner]+=playerArr[0].sumhand();
+	}
+	else if(numofplayerstotal==3)
+	{
+		if(winner==0)
+	score[winner]+=playerArr[1].sumhand()+playerArr[2].sumhand();
+	else if(winner==1)
+	 score[winner]+=playerArr[0].sumhand()+playerArr[2].sumhand();
+	 else
+	  score[winner]+=playerArr[0].sumhand()+playerArr[1].sumhand();
+	}
+	else 
+	{
+	if(winner==0)
+	score[winner]+=playerArr[1].sumhand()+playerArr[2].sumhand()+playerArr[3].sumhand();
+	else if(winner==1)
+	 score[winner]+=playerArr[0].sumhand()+playerArr[2].sumhand()+playerArr[3].sumhand();
+	 else if(winner==2)
+	  score[winner]+=playerArr[0].sumhand()+playerArr[1].sumhand()+playerArr[3].sumhand();
+	  else
+	   score[winner]+=playerArr[0].sumhand()+playerArr[1].sumhand()+playerArr[2].sumhand();
+	}
 return playerArr[winner].getName();
 } 
 
@@ -186,7 +244,7 @@ void CDominoesGame::playerTurnPassed()
 {
 	system("CLS");
 
-	cout << getCurrentPlayer() << "\033[1;35m has passed his/her turn! \033[0m" << endl << endl;
+	cout << getCurrentPlayer() << "\033[1;35m has finished his/her turn! \033[0m" << endl << endl;
 	sequentialPasses += 1;
 
 	system("pause");
@@ -202,9 +260,12 @@ void CDominoesGame::newGame(const GameOptions &opt)
 		this->isGameActive = false;
 		return;
 	}
-
+  
 	clearState(); // Clear old game state
-
+score[0]=0;
+	score[1]=0;
+	score[2]=0;
+	score[3]=0;
 	initPlayerArr(opt); // Initialize array of active players
 
 	srand(time(0)); // Get new seed for random number generator
@@ -212,7 +273,7 @@ void CDominoesGame::newGame(const GameOptions &opt)
 	// Prepare state for new game
 	this->isGameActive = true;
 	this->numPlayers = opt.numPlayers;
-	this->curPlayerTurn = rand() % numPlayers; // Select random player to start
+
 	this->winner = -1;
 
 	pile.generateAllPieces(); // Generate all 28 domino pieces
@@ -224,8 +285,35 @@ void CDominoesGame::newGame(const GameOptions &opt)
 	{
 		playerArr[i].fillHand(pile);
 	}
+		//this->curPlayerTurn = rand() % numPlayers; // Select random player to start
+		this->curPlayerTurn =startingplayer();
 }
+void CDominoesGame::continuegame(const GameOptions &opt)
+{
+	clearState(); // Clear old game state
 
+	initPlayerArr(opt); // Initialize array of active players
+
+	srand(time(0)); // Get new seed for random number generator
+
+	// Prepare state for new game
+	this->isGameActive = true;
+	this->numPlayers = opt.numPlayers;
+	
+	this->winner = -1;
+
+	pile.generateAllPieces(); // Generate all 28 domino pieces
+	pile.shuffle();           // Shuffle/randomize all 28 domino pieces
+
+	// Loop through each player and give them the initial hand of
+	// domino pieces from the pile
+	for (int i = 0; i < numPlayers; i++)
+	{
+		playerArr[i].fillHand(pile);
+	}
+	//this->curPlayerTurn = rand() % numPlayers; // Select random player to start
+     this->curPlayerTurn =startingplayer();
+}
 // Processes the next player turn
 void CDominoesGame::processTurn()
 {
@@ -287,28 +375,94 @@ void CDominoesGame::showWinMessage()
 		cout << "\033[1;36m Dominoes Left:   \033[0m" << playerArr[i].getPiecesInHand() << endl << endl;
 
 		playerArr[i].printHand();
-      cout<<"\033[1;36m sum of cards in hand \033[0m"<<playerArr[i].sumhand();
+      cout<<"\033[1;36m sum of cards in\033[0m "<<playerArr[i].getName() <<"\033[1;36m 's hand is = \033[0m"<<playerArr[i].sumhand();
 		cout << endl;
 		system("pause");
 	}
 if (winner == -1)
 	{
-		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-		cout << "\033[1;36m Nobody can make a move! The game has ended \033[0m";
-		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
-		
-		cout << "\033[1;36m Congratulations! \033[0m" << getWinner() << "\033[1;36m has won the game! \033[0m";
+		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "\033[1;36m Congratulations! \033[0m" << getWinner() << "\033[1;36m has won the round! \033[0m";
 		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
 	}
 	else
 	{
 		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-		
-		cout << "\033[1;36m Congratulations! \033[0m" << getWinner() << "\033[1;36m has won the game! \033[0m";
+		cout << "\033[1;36m Congratulations! \033[0m" << getWinner() << "\033[1;36m has won the round! \033[0m";
 		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
 	}
 	}
-	
+// function to check if a players score is more than 101 and won the whole game
+	int  CDominoesGame:: checkendgame()
+	{
+      if(score[0]>=101)
+	  {
+		  	cout << endl <<endl<< "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "\033[1;36m Congratulations!  \033[0m" <<playerArr[0].getName() << "\033[1;36m has won the whole game with total score =  \033[0m"<<score[0]<<"\033[1;36m ! \033[0m";
+		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+		system("pause");
+		return 1;
+	  }
+	  else if(score[1]>=101)
+	  {
+		  	cout << endl <<endl<< "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "\033[1;36m Congratulations!  \033[0m" <<playerArr[1].getName() << "\033[1;36m has won the whole game with total score =  \033[0m"<<score[1]<<"\033[1;36m ! \033[0m";
+		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+		system("pause");
+		return 1;
+	  }
+	  else if(score[2]>=101)
+	  {
+		  	cout << endl <<endl<< "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "\033[1;36m Congratulations!  \033[0m" <<playerArr[2].getName() << "\033[1;36m has won the whole game with total score =  \033[0m"<<score[2]<<"\033[1;36m ! \033[0m";
+		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+		system("pause");
+		return 1;
+	  }
+	  else if(score[3]>=101)
+	  {
+		  	cout << endl <<endl<< "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "\033[1;36m Congratulations!  \033[0m" <<playerArr[3].getName() << "\033[1;36m has won the whole game with total score =  \033[0m"<<score[3]<<"\033[1;36m ! \033[0m";
+		cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+		system("pause");
+		return 1;
+	  }
+return 0;
+	}
+
+	// find starting player index 
+	// By comparing between greatestcard in each player hand
+	int  CDominoesGame:: startingplayer()
+	{
+		if(numofplayerstotal==2)
+		{
+			if(playerArr[0].maxcard()>playerArr[1].maxcard())
+			return 0;
+			else return 1;
+		}
+		else if(numofplayerstotal==3)
+		{
+			if((playerArr[0].maxcard()>playerArr[1].maxcard())&&(playerArr[0].maxcard()>playerArr[2].maxcard()))
+			return 0;
+			else 
+			if((playerArr[1].maxcard()>playerArr[0].maxcard())&&(playerArr[1].maxcard()>playerArr[2].maxcard()))
+			return 1;
+			else return 2;
+		}
+		else 
+		{
+          if((playerArr[0].maxcard()>playerArr[1].maxcard())&&(playerArr[0].maxcard()>playerArr[2].maxcard())&&(playerArr[0].maxcard()>playerArr[3].maxcard()))
+		return 0;
+		else 
+		 if((playerArr[1].maxcard()>playerArr[0].maxcard())&&(playerArr[1].maxcard()>playerArr[2].maxcard())&&(playerArr[1].maxcard()>playerArr[3].maxcard()))
+		return 1;
+		else 
+		 if((playerArr[2].maxcard()>playerArr[0].maxcard())&&(playerArr[2].maxcard()>playerArr[1].maxcard())&&(playerArr[2].maxcard()>playerArr[3].maxcard()))
+		return 2;
+		else 
+		return 3;
+		}
+	}
 
 /* =========================================
 *  End of File

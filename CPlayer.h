@@ -1,3 +1,9 @@
+/* members team :
+(1) Name :  Mahmoud raafat mohamed shaaban               ,    Sec : 4                , B.N : 1
+(2) Name :  Ahmed mohamed mohamed ibrahiem               ,    Sec : 1                , B.N : 22 
+(3) Name :  Mohamed hisham hammad abdel rahman           ,    Sec : 3                , B.N : 53
+(4) Name : Mohamed yahya abdel fattah                    ,    Sec : 3                , B,N : 54 */
+
 /* =============================================
 * File: CPlayer.h
 * Description: Header file for the CPlayer class.
@@ -42,6 +48,7 @@ public:
 	bool processTurn(CDominoCollection &table, CDominoCollection &pile);
 	void printHand();
 	int sumhand();
+	int maxcard();
 
 };
 
