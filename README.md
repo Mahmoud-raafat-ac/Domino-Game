@@ -2,7 +2,8 @@
   Domino Game using C++ Doubly-Linked list Data Structures.
 ## To run the code
   Run the makefile only that will generate an executable file to open.
-##Preview
+
+### Preview
   https://youtu.be/G4VLQxSwCpU
 
 ------------------------
